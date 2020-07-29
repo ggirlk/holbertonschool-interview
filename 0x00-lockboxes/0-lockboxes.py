@@ -7,9 +7,12 @@ Created on Mon Jul 27 05:52:28 2020
 
 def canUnlockAll(boxes):
     k = 0
-    for j in range(0, len(boxes) - 1):
-            if j in boxes[j]:
-                k = 1
-    if k == 1:
-        return True
-    return False
+    t = 0
+    for i in range(0, len(boxes[k]) - 1):
+        for j in range(0, len(boxes) - 1):
+        	if j not in boxes[k]:
+        		t = 1
+        k += 1
+    if t == 1:
+    	return False
+    return True
