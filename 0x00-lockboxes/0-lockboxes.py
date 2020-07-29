@@ -2,7 +2,6 @@
 """
 Created on Mon Jul 27 05:52:28 2020
 
-
 @author: khouloud
 """
 
@@ -12,5 +11,5 @@ def canUnlockAll(boxes):
             if j in boxes[j]:
                 k = 1
     if k == 1:
-        return False
-    return True
+        return True
+    return False
