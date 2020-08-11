@@ -11,7 +11,7 @@ def minOperations(n):
         n -= 1
     while n > 1:
         count += 1
-        #count += 1
+        count += 1
         n = n / 2
 
     return int(count)
