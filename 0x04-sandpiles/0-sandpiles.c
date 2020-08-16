@@ -1,6 +1,28 @@
 #include "sandpiles.h"
 
 /**
+ * print_grid - to print
+ * @grid: grid
+ *
+ * Return: nothing
+ */
+
+static void print_grid(int grid[3][3])
+{
+    int i, j;
+
+    for (i = 0; i < 3; i++)
+    {
+        for (j = 0; j < 3; j++)
+        {
+            if (j)
+                printf(" ");
+            printf("%d", grid[i][j]);
+        }
+        printf("\n");
+    }
+}
+/**
  * topple - to topple grid
  * @grid: grid
  * @k: tester
@@ -40,6 +62,8 @@ int topple(int grid[3][3], int k)
 
 	if (k == 1)
 	{
+		printf("=\n");	
+		print_grid(grid);
 		grid[3][3] = topple(grid, 0);
 	}
 	return (grid[3][3]);
