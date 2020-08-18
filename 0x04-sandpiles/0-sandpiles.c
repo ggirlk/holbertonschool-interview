@@ -1,11 +1,11 @@
 #include "sandpiles.h"
 
 /**
- * print_grid - to print
- * @grid: grid
- *
- * Return: nothing
- */
+* print_grid - to print
+* @grid: grid
+*
+* Return: nothing
+*/
 
 static void print_grid(int grid[3][3])
 {
@@ -24,22 +24,17 @@ printf("\n");
 }
 
 /**
- * topple - to topple grid
- * @grid: grid
- * @k: tester
- *
- * Return: grid
- */
+* test4 - to test if there is cells >= 4
+* @test: grid
+* @grid1: grid
+*
+* Return: nothing
+*/
 
-void topple(int grid1[3][3])
+void test4(int test[3][3], int grid1[3][3])
 {
-int k = 0;
 int i = 0, j = 0;
-int test[3][3] = {
-        {0, 0, 0},
-        {0, 0, 0},
-        {0, 0, 0}
-    };
+
 for (i = 0; i < 3; ++i)
 {
 for (j = 0; j < 3; ++j)
@@ -76,6 +71,26 @@ grid1[i + 1][j] += 1;
 }
 }
 }
+}
+
+/**
+* topple - to topple grid
+* @grid1: grid
+*
+* Return: grid
+*/
+
+void topple(int grid1[3][3])
+{
+int k = 0, i = 0, j = 0;
+int test[3][3] = {
+{0, 0, 0},
+{0, 0, 0},
+{0, 0, 0}
+};
+
+test4(&(*test), &(*grid1));
+
 for (i = 0; i < 3; ++i)
 {
 for (j = 0; j < 3; ++j)
@@ -95,12 +110,12 @@ topple(&(*grid1));
 }
 
 /**
- * sandpiles_sum - to add grids
- * @grid1: grid
- * @grid2: grid
- *
- * Return: nothing
- */
+* sandpiles_sum - to add grids
+* @grid1: grid
+* @grid2: grid
+*
+* Return: nothing
+*/
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
