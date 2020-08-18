@@ -31,10 +31,14 @@ printf("\n");
  * Return: grid
  */
 
-void topple(int grid1[3][3], int k)
+void topple(int grid1[3][3])
 {
-printf("=\n");
-print_grid(grid1);
+int k = 0;
+int test[3][3] = {
+        {0, 0, 0},
+        {0, 0, 0},
+        {0, 0, 0}
+    };
 for (int i = 0; i < 3; ++i)
 {
 for (int j = 0; j < 3; ++j)
@@ -42,6 +46,17 @@ for (int j = 0; j < 3; ++j)
 if (grid1[i][j] > 3)
 {
 grid1[i][j] -= 4;
+test[i][j] = 1;
+k = 1;
+}
+}
+}
+for (int i = 0; i < 3; ++i)
+{
+for (int j = 0; j < 3; ++j)
+{
+if (test[i][j] == 1)
+{
 if ((i - 1) >= 0)
 {
 grid1[i - 1][j] += 1;
@@ -58,13 +73,14 @@ if ((i + 1) < 3)
 {
 grid1[i + 1][j] += 1;
 }
-k = 1;
 }
 }
 }
 if (k == 1)
 {
-topple(&(*grid1), 0);
+printf("=\n");
+print_grid(grid1);
+topple(&(*grid1));
 }
 }
 
@@ -78,8 +94,6 @@ topple(&(*grid1), 0);
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-int k = 0;
-
 for (int i = 0; i < 3; ++i)
 {
 for (int j = 0; j < 3; ++j)
@@ -87,5 +101,5 @@ for (int j = 0; j < 3; ++j)
 grid1[i][j] += grid2[i][j];
 }
 }
-topple(&(*grid1), k);
+topple(&(*grid1));
 }
