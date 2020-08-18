@@ -3,8 +3,6 @@
 /**
 * print_grid - to print
 * @grid: grid
-*
-* Return: nothing
 */
 
 static void print_grid(int grid[3][3])
