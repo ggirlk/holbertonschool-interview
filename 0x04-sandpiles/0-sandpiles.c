@@ -111,5 +111,7 @@ for (int j = 0; j < 3; ++j)
 grid1[i][j] += grid2[i][j];
 }
 }
+printf("=\n");
+print_grid(grid1);
 topple(&(*grid1));
 }
