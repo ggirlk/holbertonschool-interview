@@ -10,7 +10,7 @@
 
 int is_palindrome(listint_t **head)
 {
-	int size = 0, i, t[100];
+	int size = 0, i, t[1000];
 	listint_t **h = head;
 
 	while (*h)
@@ -25,7 +25,7 @@ int is_palindrome(listint_t **head)
 	}
 	if (size % 2 == 0)
 	{
-		for (i = 0; i < size/2; i++)
+		for (i = 0; i < size / 2; i++)
 		{
 			if (t[i] != t[size - 1 - i])
 			{
@@ -35,7 +35,7 @@ int is_palindrome(listint_t **head)
 	}
 	else
 	{
-		for (i = 0; i < size - 1/2; i++)
+		for (i = 0; i < size - 1 / 2; i++)
 		{
 			if (t[i] != t[size - 1 - i])
 			{
