@@ -16,15 +16,14 @@ int is_palindrome(listint_t **head)
 	{
 		return (1);
 	}
-	i = 0;
+	size = 0;
 	t = malloc(sizeof(head));
 	while (*head)
 	{
-		t[i] = (*head)->n;
+		t[size] = (*head)->n;
 		(*head) = (*head)->next;
-		i++;
+		size++;
 	}
-	size = i;
 	if (size % 2 == 0)
 	{
 		for (i = 0; i < size / 2; i++)
