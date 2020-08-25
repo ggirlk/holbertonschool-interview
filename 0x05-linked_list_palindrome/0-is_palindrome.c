@@ -10,19 +10,21 @@
 
 int is_palindrome(listint_t **head)
 {
-	int size = 0, i, t[1000];
-	listint_t **h = head;
+	int size, i, *t;
 
-	while (*h)
-	{
-		t[size] = (*h)->n;
-		size++;
-		(*h) = (*h)->next;
-	}
+	i = 0;
 	if (head == NULL)
 	{
 		return (1);
 	}
+	t = malloc(sizeof(head));
+	while (*head)
+	{
+		t[i] = (*head)->n;
+		(*head) = (*head)->next;
+		i++;
+	}
+	size = i;
 	if (size % 2 == 0)
 	{
 		for (i = 0; i < size / 2; i++)
