@@ -45,6 +45,5 @@ int is_palindrome(listint_t **head)
 			}
 		}
 	}
-	free(t);
 	return (1);
 }
