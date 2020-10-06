@@ -14,6 +14,8 @@ def canUnlockAll(boxes):
             k.append(boxes[i][j])
 
     for i in range(1, len(boxes) - 1):
+        if not isinstance(boxes[i], list) and len(boxes[i]) == 0:
+            t = False
         if i not in k:
             t = False
         else:
