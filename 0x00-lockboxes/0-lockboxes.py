@@ -13,18 +13,15 @@ def canUnlockAll(boxes):
         return False
     for boxe in boxes:
         for key in boxe:
+            if key == 0:
+                return False
             if key not in k:
                 k.append(key)
-    i = 0
-    for boxe in boxes:
-        if i == 0:
-            test = True
+
+    for i in range(0, len(boxes)):
         if i not in k:
             test = False
-        if type(boxe) is list and len(boxe) == 0:
+        if type(boxes[i]) is list and len(boxes[i]) == 0:
             test = True
-        # if type(boxe) is list and len(boxe) == 0 and i != len(boxes) - 1:
-        #     test = False
-        i += 1
 
     return test
