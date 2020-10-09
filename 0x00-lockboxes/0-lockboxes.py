@@ -7,20 +7,24 @@ Created on Mon Jul 27 05:52:28 2020
 
 
 def canUnlockAll(boxes):
-    k = []
-    for i in range(0, len(boxes) - 1):
-        for j in range(0, len(boxes[i])):
-            k.append(boxes[i][j])
-    i = 0
-    try:
-        while boxes[i]:
-            i += 1
-    except:
+    k=[]
+    test = True
+    if type(boxes) is not list or len(boxes) == 0:
         return False
-
-    for i in range(1, len(boxes)):
-        if not isinstance(boxes[i], list) and len(boxes[i]) == 0:
-            return False
+    for boxe in boxes:
+        for key in boxe:
+            if key not in k:
+                k.append(key)
+    i = 0
+    for boxe in boxes:
+        if i == 0:
+            test = True
         if i not in k:
-            return False
-    return True
+            test = False
+        if type(boxe) is list and len(boxe) == 0:
+            test = True
+        # if type(boxe) is list and len(boxe) == 0 and i != len(boxes) - 1:
+        #     test = False
+        i += 1
+
+    return test
