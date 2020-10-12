@@ -7,21 +7,17 @@ Created on Mon Jul 27 05:52:28 2020
 
 
 def canUnlockAll(boxes):
+    if not boxes or len(boxes) < 2:
+        return False
     l = len(boxes)
-    keys = []
-    for box in boxes:
-        for key in box:
-            if key not in keys:
-                if key != 0 and key < l:
-                    keys.append(key)
-    keys.sort()
     t = 1
-    for i in keys:
-        if type(boxes[i]) is list:
-            if boxes[i]:
-                t += 1
-        else:
-            return False
-    if t == l - 1:
+    keys = [0]
+    for key in keys:
+        for n in boxes[key]:
+            if n not in keys:
+                if n != key and n < l:
+                    t += 1
+                    keys.append(n)
+    if t == l:
         return True
     return False
