@@ -7,7 +7,7 @@ Created on Mon Jul 27 05:52:28 2020
 
 
 def canUnlockAll(boxes):
-    if not boxes or len(boxes) < 2:
+    if not boxes or len(boxes) == 0:
         return False
     l = len(boxes)
     t = 1
