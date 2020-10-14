@@ -30,6 +30,10 @@ listint_t *insert_node(listint_t **head, int number)
 		add_nodeint_end(&h, (*head)->n);
 		*head = (*head)->next;
 	}
+	if (t == 0)
+	{
+		add_nodeint_end(&h, number);
+	}
 	(*head) = h;
 	return (*head);
 }
