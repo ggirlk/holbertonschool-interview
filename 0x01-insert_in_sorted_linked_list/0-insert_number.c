@@ -22,17 +22,18 @@ return (NULL);
 
 new->n = number;
 new->next = NULL;
-
 if (*head == NULL)
 *head = new;
 else
 {
 while (current != NULL)
 {
-if (current->next != NULL && current->next->n > number && t == 0)
+if (current->next != NULL && current->n > number && t == 0)
 {
 new->next = current->next;
+new->n = current->n;
 current->next = new;
+current->n = number;
 current = new->next;
 t = 1;
 }
