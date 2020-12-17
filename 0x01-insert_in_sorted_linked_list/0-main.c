@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "lists.h"
+#include <time.h>
 
 /**
  * main - check the code for Holberton School students.
@@ -11,7 +12,7 @@
 int main(void)
 {
     listint_t *head;
-
+    clock_t tic = clock();
     head = NULL;
     add_nodeint_end(&head, 0);
     add_nodeint_end(&head, 1);
@@ -26,10 +27,13 @@ int main(void)
     printf("-----------------\n");
 
     insert_node(&head, 27);
+    insert_node(&head, 5);
+    insert_node(&head, 2000);
 
     print_listint(head);
 
     free_listint(head);
-
+    clock_t toc = clock();
+    printf("Elapsed: %f seconds\n", (double)(toc - tic) / CLOCKS_PER_SEC);
     return (0);
 }
