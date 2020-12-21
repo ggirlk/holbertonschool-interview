@@ -9,7 +9,7 @@
 */
 queue_t *get_a_queue(binary_tree_t *node)
 {
-queue_t *q = malloc(sizeof(queue_t));
+queue_t *q = (queue_t *)malloc(sizeof(queue_t));
 if (q == NULL)
 return (NULL);
 q->next = NULL;
@@ -77,7 +77,7 @@ heap_t *heap_insert(heap_t **root, int value)
 {
 if (*root == NULL)/*insert new node if the heap is empty*/
 {
-*root = binary_tree_node(NULL, value);
+*root = binary_tree_node(*root, value);
 }
 else /*serach for a proper insert point*/
 {
