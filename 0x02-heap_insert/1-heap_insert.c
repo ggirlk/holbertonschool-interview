@@ -55,7 +55,7 @@ if (node->right != NULL)
 * @current_node: pointer to the node
 * Return: nothing
 */
-void swap(binary_tree_t *current_node)
+binary_tree_t *swap(binary_tree_t *current_node)
 {
 while (current_node->parent != NULL &&
 current_node->parent->n < current_node->n)
@@ -66,6 +66,7 @@ current_node->parent->n = current_node->n;
 current_node->n = tmp;
 current_node = current_node->parent;
 }
+return (current_node);
 }
 /**
 * heap_insert - insert a value into a Max Binary Heap
@@ -78,6 +79,7 @@ heap_t *heap_insert(heap_t **root, int value)
 if (*root == NULL)/*insert new node if the heap is empty*/
 {
 *root = binary_tree_node(*root, value);
+return(*root);
 }
 else /*serach for a proper insert point*/
 {
@@ -102,11 +104,11 @@ queue_put(current_node, &last_q);
 current_q = current_q->next;/*increment the current pointer*/
 continue;
 }
-/*put the node to proper point*/
-swap(current_node);
 break;
 }
 free_queue(&q);/*free queue node*/
+/*put the node to proper point*/
+return (swap(current_node));
 }
-return (*root);
+return (NULL);
 }
