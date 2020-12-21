@@ -79,7 +79,7 @@ heap_t *heap_insert(heap_t **root, int value)
 if (*root == NULL)/*insert new node if the heap is empty*/
 {
 *root = binary_tree_node(*root, value);
-return(*root);
+return (*root);
 }
 else /*serach for a proper insert point*/
 {
