@@ -10,6 +10,8 @@
 queue_t *get_a_queue(binary_tree_t *node)
 {
 queue_t *q = malloc(sizeof(queue_t));
+if (q == NULL)
+    return (NULL)
 q->next = NULL;
 q->node = node;
 return (q);
