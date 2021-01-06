@@ -3,7 +3,15 @@
 
 
 def minOperations(n):
+    count = 0
     if not isinstance(n, int) or n < 0:
         return 0
-    k = n**0.5
-    return round(k*2)
+
+    if n % 2 != 0:
+        n -= 1
+    while n > 1:
+        count += 1
+        count += 1
+        n = n / 2
+
+    return int(count)
