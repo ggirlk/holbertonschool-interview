@@ -8,5 +8,5 @@ def minOperations(n):
         return 0
 
     k = n**0.5
-    k = round(k*2)
-    return int(k)
+    #k = round(k*2)
+    return int(k*2)
