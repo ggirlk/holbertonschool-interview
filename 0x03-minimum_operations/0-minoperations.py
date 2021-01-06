@@ -18,10 +18,7 @@ def minOperations(n):
             k -= 1
             op += 1
         if op >= n:
-            if op == n:
-                return count
-            else:
-                return 0
+            return count
         
         
         
