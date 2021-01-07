@@ -20,4 +20,4 @@ def minOperations(n):
             H = H
             op += 1
             state = "paste"
-    return 0
+    return op
