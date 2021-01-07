@@ -8,17 +8,16 @@ def minOperations(n):
     k = op = 0
     H = 1
     state = "copy"
-    while H < n:
-        
+    while H <= n:
         if state == "paste":
             H += H
             k += 1
             op += 1
-            if k == 2:
+            if k == 2 and H < n:
                 state = "copy"
         if state == "copy":
             k = 0
             H = H
             op += 1
-            state = "paste"
+        state = "paste"
     return op
