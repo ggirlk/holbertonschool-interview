@@ -4,21 +4,16 @@
 
 def minOperations(n):
     """ doc """
-    if not isinstance(n, int) or n < 0:
+    if not isinstance(n, int) or n < 2:
         return 0
-    op = 1
-    H = 1
-    state = "copy"
-    while H <= n//2:
-        if state == "copy":
-            step = H
-            op += 1
-            state = "paste"
-        if state == "paste" and H <= n//2:
-            H += step
-            op += 1
-        if state == "paste" and H <= n//2:
-            H += step
-            op += 1
-            state = "copy" 
-    return op
+    op = 0
+    k = 3
+    while n%2 == 0:
+        op += 2
+        n = n//2
+    while k <= n:
+        while n % k == 0:
+            op += k
+            n = n//k
+        k += 2
+    return int(op)
