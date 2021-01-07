@@ -3,22 +3,22 @@
 
 
 def minOperations(n):
-    count = 0
     if not isinstance(n, int) or n < 0:
         return 0
-    k = 0
-    op = 0
-    while True:
-        if k == 0:
-            count += 1
-            op = (op * 2) + 1
-            k = 2
-        else:
-            count += 1
-            k -= 1
+    k = op = 0
+    H = 1
+    state = "copy"
+    while H < n:
+        
+        if state == "paste":
+            H += H
+            k += 1
             op += 1
-        if op >= n:
-            return count
-        
-        
-        
+            if k == 2:
+                state = "copy"
+        if state == "copy":
+            k = 0
+            H = H
+            op += 1
+            state = "paste"
+    return op
