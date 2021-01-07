@@ -6,20 +6,21 @@ import math
 def minOperations(n):
     if not isinstance(n, int) or n < 0:
         return 0
-    k = op = 0
+    if n <= 2:
+        return 2
+    op = 1
     H = 1
     state = "copy"
-    while H <= n:
-        if state == "paste":
-            H += H
-            k += 1
-            op += 1
-            if k == 2 and H < n:
-                state = "copy"
-                continue
+    while H <= n/2:
         if state == "copy":
-            k = 0
-            H = H
+            h = H
             op += 1
             state = "paste"
+        if state == "paste" and H <= n/2:
+            H += h
+            op += 1
+        if state == "paste" and H <= n/2:
+            H += h
+            op += 1
+            state = "copy" 
     return op
