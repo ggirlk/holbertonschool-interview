@@ -8,7 +8,7 @@ def minOperations(n):
         return 0
     op = 0
     k = 3
-    while n%2 == 0:
+    while n % 2 == 0:
         op += 2
         n = n//2
     while k <= n:
