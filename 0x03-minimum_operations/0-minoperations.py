@@ -6,8 +6,6 @@ def minOperations(n):
     """ doc """
     if not isinstance(n, int) or n < 0:
         return 0
-    if n <= 2:
-        return 2
     op = 1
     H = 1
     state = "copy"
