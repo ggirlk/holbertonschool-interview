@@ -32,7 +32,8 @@ printf("\n");
 void test4(int test[3][3], int grid1[3][3])
 {
 int i = 0, j = 0;
-
+printf("=\n");
+print_grid(grid1);
 for (i = 0; i < 3; ++i)
 {
 for (j = 0; j < 3; ++j)
@@ -101,8 +102,6 @@ k = 1;
 }
 if (k == 1)
 {
-printf("=\n");
-print_grid(grid1);
 topple(&(*grid1));
 }
 }
@@ -126,7 +125,5 @@ for (j = 0; j < 3; ++j)
 grid1[i][j] += grid2[i][j];
 }
 }
-printf("=\n");
-print_grid(grid1);
 topple(&(*grid1));
 }
