@@ -20,7 +20,22 @@ printf("%d", grid[i][j]);
 printf("\n");
 }
 }
+/**
+* stabilityTest - Determines if grid is stable
+* @grid1: if grid numbers
+* Return: 0 or 1
+*/
 
+int stabilityTest(int grid1[3][3])
+{
+int i, j;
+
+for (i = 0; i < 3; i++)
+for (j = 0; j < 3; j++)
+if (grid1[i][j] > 3)
+return (1);
+return (0);
+}
 /**
 * test4 - to test if there is cells >= 4
 * @test: grid
@@ -32,8 +47,7 @@ printf("\n");
 void test4(int test[3][3], int grid1[3][3])
 {
 int i = 0, j = 0;
-printf("=\n");
-print_grid(grid1);
+
 for (i = 0; i < 3; ++i)
 {
 for (j = 0; j < 3; ++j)
@@ -87,7 +101,11 @@ int test[3][3] = {
 {0, 0, 0},
 {0, 0, 0}
 };
-
+if (stabilityTest(grid1))
+{
+printf("=\n");
+print_grid(grid1);
+}
 test4(&(*test), &(*grid1));
 
 for (i = 0; i < 3; ++i)
@@ -100,6 +118,7 @@ k = 1;
 }
 }
 }
+
 if (k == 1)
 {
 topple(&(*grid1));
