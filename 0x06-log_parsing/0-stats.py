@@ -23,22 +23,19 @@ if __name__ == "__main__":
         for key in status:
             if status[key] != 0:
                 print("{}: {:d}".format(key, status[key]))
-        return 0
 
     try:
         for line in sys.stdin:
-            try:
-                words = line.split()
-                if words[-2] in status.keys():
-                    status[words[-2]] += 1
-                fileSize += int(words[-1])
-                i += 1
-                if i == 10:
-                    printstats(fileSize, status)
-                    i = 0
-            except:
+            words = line.split()
+            if words[-2] in status.keys():
+                status[words[-2]] += 1
+            fileSize += int(words[-1])
+            i += 1
+            if not i % 10:
                 printstats(fileSize, status)
 
     except KeyboardInterrupt:
         printstats(fileSize, status)
         raise
+if i > 0 and i < 10:
+    printstats(fileSize, status)
