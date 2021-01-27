@@ -18,7 +18,6 @@ if __name__ == "__main__":
     }
     fileSize = 0
 
-
     def printstats(fileSize, status):
         """ doc """
         print("File size: {}".format(fileSize))
