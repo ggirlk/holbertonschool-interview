@@ -31,10 +31,10 @@ if __name__ == "__main__":
             if words[-2] in status.keys():
                 status[words[-2]] += 1
             fileSize += int(words[-1])
-            i += 1
             if i % 10 == 0:
                 printstats(fileSize, status)
                 fileSize = 0
+            i += 1
     except KeyboardInterrupt:
         printstats(fileSize, status)
         raise
