@@ -26,7 +26,7 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
-            words = line.split(" ")
+            words = line.split()
             if len(words) > 2:
                 if words[-2] in status.keys():
                     status[words[-2]] += 1
@@ -39,4 +39,5 @@ if __name__ == "__main__":
         printstats(fileSize, status)
         raise
     finally:
-        printstats(fileSize, status)
+        if i > 0:
+            printstats(fileSize, status)
