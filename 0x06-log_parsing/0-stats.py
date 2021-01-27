@@ -33,7 +33,6 @@ if __name__ == "__main__":
             fileSize += int(words[-1])
             if i % 10 == 0:
                 printstats(fileSize, status)
-                fileSize = 0
             i += 1
     except KeyboardInterrupt:
         printstats(fileSize, status)
