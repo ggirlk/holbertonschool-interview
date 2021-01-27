@@ -39,5 +39,4 @@ if __name__ == "__main__":
         printstats(fileSize, status)
         raise
     finally:
-        if i > 0:
-            printstats(fileSize, status)
+        printstats(fileSize, status)
