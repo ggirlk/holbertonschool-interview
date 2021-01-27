@@ -31,7 +31,7 @@ if __name__ == "__main__":
             if words[-2] in status.keys():
                 status[words[-2]] += 1
             fileSize += int(words[-1])
-            if i % 10 == 0:
+            if i != 0 and i % 10 == 0:
                 printstats(fileSize, status)
             i += 1
     except KeyboardInterrupt:
