@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" doc """
 import sys
 
 i = 0
@@ -13,7 +14,7 @@ status = {
     '500': 0
 }
 fileSize = 0
-for line in sys.stdin: 
+for line in sys.stdin:
     try:
         i += 1
         words = line.split()
