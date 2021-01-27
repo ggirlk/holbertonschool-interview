@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ doc """
-import sys
+import sys, signal
+
 
 i = 0
 status = {
@@ -14,16 +15,28 @@ status = {
     '500': 0
 }
 fileSize = 0
+
+def printstats(fileSize, status):
+    """ doc """
+    print("File size: {}".format(fileSize))
+    fileSize = 0
+    for key in status:
+        if status[key] != 0:
+            print("{}: {}".format(key, status[key]))
+    return 0
+
 for line in sys.stdin:
+
+    def handler(signum, frame):
+        """ doc """
+        printstats(fileSize, status)
+
+    signal.signal(signal.SIGINT, handler)
+
     words = line.split()
     if words[-2] in status.keys():
         status[words[-2]] += 1
     fileSize += int(words[-1])
     i += 1
-    if i == 10 or line == "^C":
-        i = 0
-        print("File size: {}".format(fileSize))
-        fileSize = 0
-        for key in status:
-            if status[key] != 0:
-                print("{}: {}".format(key, status[key]))
+    if i == 10:
+        i = printstats(fileSize, status)
