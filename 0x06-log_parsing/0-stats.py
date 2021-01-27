@@ -32,6 +32,7 @@ for line in sys.stdin:
     def handler(signum, frame):
         """ doc """
         printstats(fileSize, status)
+        raise KeyboardInterrupt
 
     signal.signal(signal.SIGINT, handler)
 
