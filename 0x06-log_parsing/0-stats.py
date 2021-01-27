@@ -20,7 +20,7 @@ if __name__ == "__main__":
     def printstats(fileSize, status):
         """ doc """
         print("File size: {:d}".format(fileSize))
-        for key in status:
+        for key in sorted(status.keys()):
             if status[key] != 0:
                 print("{}: {:d}".format(key, status[key]))
 
