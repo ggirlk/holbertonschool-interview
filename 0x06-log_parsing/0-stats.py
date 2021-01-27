@@ -20,11 +20,11 @@ if __name__ == "__main__":
     def printstats(fileSize, status):
         """ doc """
         print("File size: {}".format(fileSize))
-        fileSize = 0
         for key in status:
             if status[key] != 0:
                 print("{}: {}".format(key, status[key]))
         return 0
+
     try:
         for line in sys.stdin:
             words = line.split()
@@ -32,8 +32,9 @@ if __name__ == "__main__":
                 status[words[-2]] += 1
             fileSize += int(words[-1])
             i += 1
-            if i == 10:
-                i = printstats(fileSize, status)
+            if i % 10 == 0:
+                printstats(fileSize, status)
+                fileSize = 0
     except KeyboardInterrupt:
         printstats(fileSize, status)
         raise
