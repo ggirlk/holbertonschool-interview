@@ -27,15 +27,17 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
-            words = line.split()
-            if words[-2] in status.keys():
-                status[words[-2]] += 1
-            fileSize += int(words[-1])
-
-            if i == 10:
+            try:
+                words = line.split()
+                if words[-2] in status.keys():
+                    status[words[-2]] += 1
+                fileSize += int(words[-1])
+                i += 1
+                if i == 10:
+                    printstats(fileSize, status)
+                    i = 0
+            except:
                 printstats(fileSize, status)
-                i = -1
-            i += 1
 
     except KeyboardInterrupt:
         printstats(fileSize, status)
