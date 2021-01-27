@@ -38,4 +38,6 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         printstats(fileSize, status)
         raise
+    except Exception:
+        pass
     printstats(fileSize, status)
