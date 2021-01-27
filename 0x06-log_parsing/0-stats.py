@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ doc """
-import sys, signal
+import sys
+import signal
 
 
 i = 0
@@ -15,6 +16,7 @@ status = {
     '500': 0
 }
 fileSize = 0
+
 
 def printstats(fileSize, status):
     """ doc """
