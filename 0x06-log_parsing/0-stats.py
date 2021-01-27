@@ -24,14 +24,13 @@ if __name__ == "__main__":
             if status[key] != 0:
                 print("{}: {:d}".format(key, status[key]))
 
-
     try:
         for line in sys.stdin:
             words = line.split(" ")
             if words[-2] in status.keys():
                 status[words[-2]] += 1
-                fileSize += int(words[-1])
-                i += 1
+            fileSize += int(words[-1])
+            i += 1
             if not i % 10:
                 printstats(fileSize, status)
 
