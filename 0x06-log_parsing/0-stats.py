@@ -34,9 +34,8 @@ if __name__ == "__main__":
                 i += 1
                 if not i % 10:
                     printstats(fileSize, status)
-            else:
-                printstats(fileSize, status)
 
     except KeyboardInterrupt:
         printstats(fileSize, status)
         raise
+    printstats(fileSize, status)
