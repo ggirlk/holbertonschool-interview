@@ -10,6 +10,12 @@ if __name__ == "__main__":
     valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
     num = 0
 
+    def printStats(status_codes, total_size):
+        """ doc """
+        print("File size: {:d}".format(total_size))
+
+        for c in sorted(status_codes):
+            print("{}: {:d}".format(c, status_codes[c]))
     try:
         for line in sys.stdin:
             parsed = line.split()
@@ -24,20 +30,10 @@ if __name__ == "__main__":
                     status_codes[code] = 1
                 num += 1
                 if (num % 10 == 0):
-                    print("File size: {:d}".format(total_size))
+                    printStats(status_codes, total_size)
 
-                    for c in sorted(status_codes):
-                        print("{:d}: {:d}".format(c, status_codes[c]))
-
-        print("File size: {:d}".format(total_size))
-
-        for c in sorted(status_codes):
-            print("{:d}: {:d}".format(c, status_codes[c]))
+        printStats(status_codes, total_size)
     except KeyboardInterrupt:
-        print("File size: {:d}".format(total_size))
-
-        for c in sorted(status_codes):
-            print("{:d}: {:d}".format(c, status_codes[c]))
-
+        printStats(status_codes, total_size)
         raise
 
