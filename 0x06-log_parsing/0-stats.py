@@ -16,14 +16,8 @@ if __name__ == "__main__":
 
             num += 1
 
-            if len(parsed) != 9:
-                continue
-
-            try:
-                total_size += int(parsed[-1])
-                code = int(parsed[-2])
-            except ValueError:
-                continue
+            total_size += int(parsed[-1])
+            code = int(parsed[-2])
 
             if code not in valid_codes:
                 continue
