@@ -19,8 +19,6 @@ if __name__ == "__main__":
             total_size += int(parsed[-1])
             code = int(parsed[-2])
 
-            if code not in valid_codes:
-                continue
 
             if code in status_codes:
                 status_codes[code] += 1
