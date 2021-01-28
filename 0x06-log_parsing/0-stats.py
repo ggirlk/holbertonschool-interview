@@ -1,40 +1,54 @@
 #!/usr/bin/python3
-""" doc """
-import sys
+"""Reads stdin line by line and computes metrics"""
 
+import sys
+import traceback
 
 if __name__ == "__main__":
-    i = 0
-    status = {
-        '200': 0,
-        '301': 0,
-        '400': 0,
-        '401': 0,
-        '403': 0,
-        '404': 0,
-        '405': 0,
-        '500': 0
-    }
-    fileSize = 0
-
-    def printstats(fileSize, status):
-        """ doc """
-        print("File size: {:d}".format(fileSize))
-        for key in sorted(status.keys()):
-            if status[key] != 0:
-                print("{}: {:d}".format(key, status[key]))
+    total_size = 0
+    status_codes = {}
+    valid_codes = {200, 301, 400, 401, 403, 404, 405, 500}
+    num = 0
 
     try:
         for line in sys.stdin:
-            words = line.split()
-            if len(words) >= 2:
-                if words[-2] in status.keys():
-                    status[words[-2]] += 1
-                fileSize += int(words[-1])
-                i += 1
-                if not i % 10:
-                    printstats(fileSize, status)
-        printstats(fileSize, status)
+            parsed = line.split()
+
+            num += 1
+
+            if len(parsed) != 9:
+                continue
+
+            try:
+                total_size += int(parsed[-1])
+                code = int(parsed[-2])
+            except ValueError:
+                continue
+
+            if code not in valid_codes:
+                continue
+
+            if code in status_codes:
+                status_codes[code] += 1
+            else:
+                status_codes[code] = 1
+
+            if (num % 10 == 0):
+                print("File size: {:d}".format(total_size))
+
+                for c in sorted(status_codes):
+                    print("{:d}: {:d}".format(c, status_codes[c]))
+
     except KeyboardInterrupt:
-        printstats(fileSize, status)
+        print("File size: {:d}".format(total_size))
+
+        for c in sorted(status_codes):
+            print("{:d}: {:d}".format(c, status_codes[c]))
+
         raise
+
+    finally:
+        print("File size: {:d}".format(total_size))
+
+        for c in sorted(status_codes):
+            print("{:d}: {:d}".format(c, status_codes[c]))
