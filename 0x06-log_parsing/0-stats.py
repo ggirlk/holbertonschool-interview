@@ -30,7 +30,7 @@ if __name__ == "__main__":
             if len(words) >= 2:
                 if words[-2] in status.keys():
                     status[words[-2]] += 1
-                    fileSize += int(words[-1])
+                fileSize += int(words[-1])
                 i += 1
                 if not i % 10:
                     printstats(fileSize, status)
