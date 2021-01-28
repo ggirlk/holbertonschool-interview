@@ -14,7 +14,7 @@ if __name__ == "__main__":
         """ doc """
         print("File size: {:d}".format(total_size))
 
-        for c in sorted(status_codes):
+        for c in sorted(status_codes.keys()):
             if status_codes[c]:
                 print("{}: {:d}".format(c, status_codes[c]))
     try:
