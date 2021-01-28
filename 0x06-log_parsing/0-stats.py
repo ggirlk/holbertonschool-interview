@@ -19,7 +19,7 @@ if __name__ == "__main__":
             total_size += int(parsed[-1])
             code = int(parsed[-2])
 
-            if code in valid_codes.keys():
+            if code in status_codes.keys():
                 status_codes[code] += 1
             else:
                 status_codes[code] = 1
