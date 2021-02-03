@@ -20,13 +20,14 @@ int check_cycle(listint_t *list)
     {
         if (tmp == current)
             return (1);
-        if (tmp == NULL)
-            return (0);
+        
         if (current == NULL && tmp->next != NULL)
         {
             current = tmp;
             tmp = tmp->next;
         }
+        if (tmp == NULL)
+            return (0);
         current = current->next;
     }
     return (0);
