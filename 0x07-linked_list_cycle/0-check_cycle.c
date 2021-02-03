@@ -20,7 +20,7 @@ int check_cycle(listint_t *list)
     {
         if (tmp == NULL)
             return (0);
-        if (tmp == current)
+        if (tmp == current->next)
             return (1);
         if (current == NULL && tmp->next != NULL)
         {
@@ -29,5 +29,5 @@ int check_cycle(listint_t *list)
         }
         current = current->next;
     }
-    return (1);
+    return (0);
 }
