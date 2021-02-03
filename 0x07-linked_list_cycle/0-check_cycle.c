@@ -13,7 +13,7 @@ int check_cycle(listint_t *list)
     if (list == NULL)
         return (0);
     tmp = list;
-    if (!tmp->next && !tmp->next->next)
+    if (!tmp->next || !tmp->next->next)
         return (0);
     current = tmp->next->next;
     while (current->next->next != NULL)
