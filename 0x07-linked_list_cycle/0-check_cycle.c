@@ -17,11 +17,10 @@ int check_cycle(listint_t *list)
     while (1)
     {    
         if (current->next && current->next->next)
+        {
             current = current->next->next;
-        else
-            return (0);
-        if (tmp->next)
             tmp = tmp->next;
+        }
         else
             return (0);
         if (tmp == current->next->next)
