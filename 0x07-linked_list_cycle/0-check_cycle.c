@@ -10,7 +10,7 @@
 int check_cycle(listint_t *list)
 {
     listint_t *tmp, *current;
-    if (!list || !list->next || !list->next->next)
+    if (!list || !list->next)
         return (0);
     tmp = list;
     current = tmp;
@@ -21,7 +21,6 @@ int check_cycle(listint_t *list)
 
         current = current->next->next;
         tmp = tmp->next;
-
     }
     return (0);
 }
