@@ -13,21 +13,18 @@ int check_cycle(listint_t *list)
     if (list == NULL)
         return (0);
     tmp = list;
-    if (!tmp->next || !tmp->next->next)
-        return (0);
-    current = tmp->next->next;
-    while (current->next->next != NULL)
+    current = tmp;
+    while (current->next->next)
     {
-        if (tmp == current)
+        if (tmp == current->next->next)
             return (1);
-        if (current->next->next && tmp->next)
+        if (tmp->next && current->next->next)
         {
             current = current->next->next;
             tmp = tmp->next;
         }
         else
             return (0);
-        
     }
     return (0);
 }
