@@ -20,15 +20,15 @@ int check_cycle(listint_t *list)
         {
             if (tmp == current->next)
             {
-                free(tmp)
-                free(current)
+                free(tmp);
+                free(current);
                 return (1);
             }
             current = current->next;
         }
         tmp = tmp->next;
     }
-    free(tmp)
-    free(current)
+    free(tmp);
+    free(current);
     return (0);
 }
