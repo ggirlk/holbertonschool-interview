@@ -14,13 +14,18 @@ int check_cycle(listint_t *list)
         return (0);
     tmp = list;
     current = tmp;
-    while (current->next->next)
+    while (tmp && current)
     {
+        
+        if (current->next && current->next->next)
+        {
+            current = current->next->next;
+            tmp = tmp->next;
+        }
+        else
+            return (0);
         if (tmp == current->next->next)
             return (1);
-
-        current = current->next->next;
-        tmp = tmp->next;
     }
     return (0);
 }
