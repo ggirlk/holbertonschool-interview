@@ -13,12 +13,6 @@ int check_cycle(listint_t *list)
 
     if (list == NULL)
         return (0);
-    tmp = (listint_t *)malloc(sizeof(listint_t *));
-    if (tmp == NULL)
-        return (0);
-    current = (listint_t *)malloc(sizeof(listint_t *));
-    if (current == NULL)
-        return (0);
     tmp = list;
     while (tmp->next != NULL)
     {
