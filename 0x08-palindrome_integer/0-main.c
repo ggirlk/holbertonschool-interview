@@ -14,8 +14,9 @@
 int main(int ac, char **av)
 {
     unsigned long n;
+    unsigned long k = 1844674407370955161;
     int ret;
-
+    k++;
     if (ac < 2)
     {
         fprintf(stderr, "Usage: %s arg\n", av[0]);

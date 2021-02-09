@@ -35,33 +35,21 @@ return (i);
 
 int is_palindrome(unsigned long n)
 {
-int i, k, coef, i2;
-int midndec, compmidn, compmindec;
-double midn;
-k = 0;
-coef = 1;
-i = numberLen(n);
-i2 = (i / 2);
-while (k != i2)
+int i = numberLen(n), k;
+int arr[i];
+k = i;
+while (k)
 {
-coef *= 10;
-k++;
+arr[k] = n % 10;
+n = n / 10;
+k--;
 }
-midn = (n / coef);
-if (i % 2 != 0)
-midn = (midn / 10);
-midndec = n % coef;
-k = 0;
-while (k != i2)
+k = 1;
+while (i)
 {
-coef = (int)coef / 10;
-midn = midn / coef;
-compmidn = (int)(midn);
-midn = (midn *coef)-(compmidn *coef);
-compmindec = (int)midndec % 10;
-midndec = (int)(midndec / 10);
-if (compmindec != compmidn)
+if (arr[i] != arr[k])
 return (0);
+i--;
 k++;
 }
 return (1);
