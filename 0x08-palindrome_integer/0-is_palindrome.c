@@ -5,27 +5,6 @@
 
 
 /**
- * numberLen - number len
- * @n: the number
- *
- * Return: length of n
- */
-
-int numberLen(unsigned long n)
-{
-unsigned long ulint = 1000000000000000000;
-unsigned long k = n;
-int i = 0;
-while (k)
-{
-k = k % ulint;
-ulint = ulint / 10;
-if (k < n)
-i++;
-}
-return (i);
-}
-/**
  * is_palindrome - checks whether or not a given
  *                 unsigned integer is a palindrome
  * @n: the number to be checked
@@ -35,17 +14,18 @@ return (i);
 
 int is_palindrome(unsigned long n)
 {
-int i = numberLen(n), k;
-int arr[i];
-k = i;
-while (k)
+int i = 0, k, mid;
+int arr[20];
+while (n)
 {
-arr[k] = n % 10;
+arr[i] = n % 10;
 n = n / 10;
-k--;
+i++;
 }
-k = 1;
-while (i)
+i--;
+k = 0;
+mid = i / 2;
+while (i != mid)
 {
 if (arr[i] != arr[k])
 return (0);
