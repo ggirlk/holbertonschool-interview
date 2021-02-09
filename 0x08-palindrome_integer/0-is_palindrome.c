@@ -16,6 +16,8 @@ int is_palindrome(unsigned long n)
 {
 int i = 0, k, mid;
 int arr[20];
+if (n == 0)
+return (1);
 while (n)
 {
 arr[i] = n % 10;
