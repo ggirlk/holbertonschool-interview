@@ -4,8 +4,6 @@
 
 def validUTF8(data):
     """ doc """
-    if not data:
-        return False
     for ints in data:
         if (ints.bit_length() > 8):
             return False
