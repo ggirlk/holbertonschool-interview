@@ -6,7 +6,6 @@ def validUTF8(data):
     """ doc """
     i = 0
     for ints in data:
-        if (ints > 254):
+        if (ints.bit_length() > 8):
             return False
-
     return True
