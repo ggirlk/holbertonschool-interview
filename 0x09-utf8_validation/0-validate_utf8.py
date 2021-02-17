@@ -7,6 +7,4 @@ def validUTF8(data):
     for ints in data:
         if (ints.bit_length() > 8):
             return False
-        if (ints <= 0):
-            return False
     return True
