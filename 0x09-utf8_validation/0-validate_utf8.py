@@ -5,10 +5,8 @@
 def validUTF8(data):
     """ doc """
     try:
-        maskeddata = []
-        for n in data:
-            maskeddata.append((n & 255))  
+        maskeddata = [n & 255 for n in data]
         bytes(maskeddata).decode("UTF-8")
         return True
-    except:
+    except Exception:
         return False
