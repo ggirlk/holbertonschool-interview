@@ -5,7 +5,7 @@
 def validUTF8(data):
     """ doc """
     try:
-        bytes(data).decode()
+        bytes(data).decode("utf-8")
         return True
     except:
         return False
