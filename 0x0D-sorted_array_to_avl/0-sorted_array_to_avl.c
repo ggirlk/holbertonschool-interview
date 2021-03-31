@@ -9,9 +9,9 @@
 * Return: binary tree
 */
 
-binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
+avl_t *binary_tree_node(avl_t *parent, int value)
 {
-	binary_tree_t *tmp = (binary_tree_t *)malloc(sizeof(binary_tree_t));
+	avl_t *tmp = (avl_t *)malloc(sizeof(avl_t));
 
 	if (tmp == NULL)
 		return (NULL);
