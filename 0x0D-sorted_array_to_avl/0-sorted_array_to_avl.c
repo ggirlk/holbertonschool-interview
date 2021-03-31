@@ -31,11 +31,10 @@ avl_t *binary_tree_node(avl_t *parent, int value)
 * @right: index to the array right extreem
 * Return: avl tree
 */
-
 avl_t *insert(avl_t *root, int *array, int left, int right)
 {
 	avl_t *tmp;
-	int i = (right + left) / 2;
+	int i = (right - left) / 2 + left;
 
 	tmp = binary_tree_node((root), array[i]);
 	if (left > right)
@@ -59,9 +58,9 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	avl_t *root;
 	size_t left = 0, right = size - 1;
 
-	root = malloc(sizeof(avl_t *));
-	root = insert(root, array, left, right);
+	root = (avl_t *)malloc(sizeof(avl_t *));
 	if (!root)
 		return (NULL);
+	root = insert(root, array, left, right);
 	return (root);
 }
