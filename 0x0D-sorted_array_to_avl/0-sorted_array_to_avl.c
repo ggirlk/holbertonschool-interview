@@ -37,10 +37,11 @@ avl_t *insert(avl_t *root, int *array, int left, int right)
 	int i = (right + left) / 2;
 
 	tmp = binary_tree_node(root, array[i]);
-	if (left > right)
-		return (NULL);
-	tmp->left = insert(tmp, array, left, i - 1);
-	tmp->right = insert(tmp, array, i + 1, right);
+	if (left < right)
+	{
+		tmp->left = insert(tmp, array, left, i - 1);
+		tmp->right = insert(tmp, array, i + 1, right);
+	}
 
 	return (tmp);
 }
