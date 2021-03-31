@@ -59,7 +59,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	size_t left = 0, right = size - 1;
 
 	root = (avl_t *)malloc(sizeof(avl_t *));
-	if (!root)
+	if (!root || !array)
 		return (NULL);
 	root = insert(root, array, left, right);
 	return (root);
