@@ -21,13 +21,8 @@ typedef struct binary_tree_s
 
 typedef struct binary_tree_s avl_t;
 
-typedef struct queue {
-    struct queue* next;
-    binary_tree_t* node;
-} queue_t;
-
 void binary_tree_print(const binary_tree_t *);
-//static size_t _height(const binary_tree_t *tree)
+
 avl_t *sorted_array_to_avl(int *array, size_t size);
 
 #endif /* _BINARY_TREES_H_ */
