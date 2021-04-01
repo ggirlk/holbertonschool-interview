@@ -8,12 +8,11 @@
 * @value: the value to put in the new node
 * Return: binary tree
 */
-
 avl_t *binary_tree_node(avl_t *parent, int value)
 {
 	avl_t *tmp = (avl_t *)malloc(sizeof(avl_t));
 
-	if (tmp == NULL)
+	if (!tmp)
 		return (NULL);
 
 	tmp->n = value;
@@ -21,7 +20,6 @@ avl_t *binary_tree_node(avl_t *parent, int value)
 	tmp->parent = parent;
 	return (tmp);
 }
-
 /**
 * insert - recursive insert nodes
 * @root: pointer to the parent node of the node to create
@@ -33,12 +31,13 @@ avl_t *binary_tree_node(avl_t *parent, int value)
 */
 avl_t *insert(avl_t *root, int *array, int left, int right)
 {
-	avl_t *tmp;
-	int i = (right + left) / 2;
+	avl_t *tmp = NULL;
+	int i;
 
-	tmp = binary_tree_node(root, array[i]);
-	if (left < right)
+	if (left <= right)
 	{
+		i = (right + left) / 2;
+		tmp = binary_tree_node(root, array[i]);
 		tmp->left = insert(tmp, array, left, i - 1);
 		tmp->right = insert(tmp, array, i + 1, right);
 	}
@@ -57,11 +56,13 @@ avl_t *insert(avl_t *root, int *array, int left, int right)
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
 	avl_t *root;
-	size_t left = 0, right = size - 1;
+	size_t left, right;
 
-	root = (avl_t *)malloc(sizeof(avl_t *));
+	root = malloc(sizeof(avl_t));
 	if (!root || !array)
 		return (NULL);
+	left = 0;
+	right = size - 1;
 	root = insert(root, array, left, right);
 	return (root);
 }
