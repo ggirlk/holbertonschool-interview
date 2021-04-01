@@ -64,5 +64,5 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	left = 0;
 	right = size - 1;
 	root = insert(root, array, left, right);
-	return (root ? root : NULL);
+	return (root);
 }
