@@ -59,7 +59,7 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 	avl_t *root = NULL;
 	size_t left, right;
 
-	if (!array)
+	if (!array || size <= 0)
 		return (NULL);
 	left = 0;
 	right = size - 1;
