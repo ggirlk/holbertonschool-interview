@@ -34,16 +34,15 @@ avl_t *insert(avl_t *root, int *array, int left, int right)
 	avl_t *tmp = (avl_t *)malloc(sizeof(avl_t));
 	int i;
 
-	if (left <= right)
-	{
-		i = (right + left) / 2;
-		tmp = binary_tree_node(root, array[i]);
-		tmp->left = insert(tmp, array, left, i - 1);
-		tmp->right = insert(tmp, array, i + 1, right);
-		return (tmp);
-	}
+	if ((left > right) || !tmp)
+        return (NULL);
 
-	return (NULL);
+    i = (right + left) / 2;
+    tmp = binary_tree_node(root, array[i]);
+    tmp->left = insert(tmp, array, left, i - 1);
+    tmp->right = insert(tmp, array, i + 1, right);
+    return (tmp);
+
 }
 /**
 * sorted_array_to_avl - create avl tree from sorted array
