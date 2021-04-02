@@ -10,9 +10,9 @@
 */
 avl_t *binary_tree_node(avl_t *parent, int value)
 {
-	avl_t *tmp = (avl_t *)malloc(sizeof(avl_t));
+	avl_t *tmp = malloc(sizeof(avl_t));
 
-	if (!tmp)
+	if (!tmp || !parent)
 		return (NULL);
 
 	tmp->n = value;
@@ -31,13 +31,15 @@ avl_t *binary_tree_node(avl_t *parent, int value)
 */
 avl_t *insert(avl_t *root, int *array, int left, int right)
 {
-	avl_t *tmp = (avl_t *)malloc(sizeof(avl_t));
+	avl_t *tmp;
 	int i;
 
-	if ((left > right) || !tmp)
+	if (left > right)
 		return (NULL);
 	i = (right + left) / 2;
 	tmp = binary_tree_node(root, array[i]);
+	if (!tmp)
+		return (NULL);
 	tmp->left = insert(tmp, array, left, i - 1);
 	tmp->right = insert(tmp, array, i + 1, right);
 	return (tmp);
