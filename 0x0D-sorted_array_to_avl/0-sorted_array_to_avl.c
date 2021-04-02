@@ -12,7 +12,7 @@ avl_t *binary_tree_node(avl_t *parent, int value)
 {
 	avl_t *tmp = malloc(sizeof(avl_t));
 
-	if (!tmp || !parent)
+	if (!tmp)
 		return (NULL);
 
 	tmp->n = value;
