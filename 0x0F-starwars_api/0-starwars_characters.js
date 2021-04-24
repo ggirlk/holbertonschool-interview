@@ -1,6 +1,6 @@
 #!/usr/bin/node
 const request = require('request');
-var myArgs = process.argv.slice(2);
+let myArgs = process.argv.slice(2);
 
 let url = 'https://swapi-api.hbtn.io/api/films/' + myArgs[0];
 let options = {json: true};
