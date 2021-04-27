@@ -13,9 +13,9 @@ if (process.argv.length === 3) {
       for (const char of body.characters) {
         const ret = () => {
           return new Promise((resolve, reject) => {
-            request(char, options, function (err, resp, bodys) {
+            request(char, options, function (error, res, body) {
               if (error) { console.log(error); } else {
-                resolve(bodys.name);
+                resolve(body.name);
               }
             });
           });
