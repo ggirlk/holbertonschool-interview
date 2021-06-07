@@ -15,19 +15,20 @@ def rain(walls):
         If the list is empty return 0.
     """
     count = 0
-    for i in range(len(walls)):
+    m = 0
+    for i in range(len(walls)-1):
+        if walls[i] != 0:
+            m = walls[i]
         if walls[i] == 0:
-            m = walls[i-1]
-            k = 1
+            k = 0
             for j in range(i, len(walls)-1):
                 if walls[j] == 0:
                     k += 1
                 else:
                     break
-            i = j
-            if (walls[i+1] < m):
-                count += k * walls[i+1]
-            else:
+            if (walls[i+1] >= m):
                 count += k * m
+            else:
+                count += k * walls[i+1]
 
     return count
