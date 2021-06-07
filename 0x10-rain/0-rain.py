@@ -16,10 +16,12 @@ def rain(walls):
     """
     count = 0
     m = 0
+    k = 0
     for i in range(len(walls)-1):
         if walls[i] > walls[i+1]:
             m = walls[i]
-        else:
-            count += m - walls[i]
+            k = walls[i+1]
+        if walls[i] <= walls[i+1]:
+            count += m - k
 
     return count
