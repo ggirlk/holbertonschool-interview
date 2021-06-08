@@ -28,5 +28,4 @@ def rain(walls):
                 count += maxright - walls[j]
             maxright = max(maxright, walls[j])
             j -= 1
-        
     return count
