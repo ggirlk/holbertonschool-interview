@@ -1,62 +1,66 @@
 #!/usr/bin/python3
-"""Count it problem
+"""
+Count it problem
 """
 import requests
 
 
-def recurse(subreddit, word_list, hot_titles, after=""):
+def count_words(subreddit, word_list, kw_cont={}, next_pg=None, reap_kw={}):
     """
-    ******************************************************
-    *** Recursive function that queries the Reddit API ***
-    ******************************************************
-    @subreddit: string representing subreddit to search for
-    @word_list: collection of keywords to search
-                in the subreddit
-    @hot_titles: dictionary of number of occurrences of 
-                 elements in word_list that are found in
-                 the request
-    @after: pagination feature of the reddit api
-
-    Return: hot_titles or None
-    """
-    url = "https://www.reddit.com/r/{}/hot.json?after={}".format(subreddit,
-                                                                 after)
-    res = requests.get(url,
-                       headers={'User-agent': 'product'},
-                       allow_redirects=False)
-
-    if res.status_code != 200:
-        return None
-    if after is None:
-        return hot_titles
-
-    for i in res.json().get('data').get('children'):
-        title_s = i.get('data').get('title').split()
-        for word in set(word_list):
-            if word.lower() in [x.lower() for x in title_s]:
-                if hot_titles.get(word):
-                    hot_titles[word] += 1
-                else:
-                    hot_titles[word] = 1
-
-    after = res.json().get('data').get('after')
-    recurse(subreddit, word_list, hot_titles, after)
-    return hot_titles
-
-
-def count_words(subreddit, word_list):
-    """
-    ***********************************************
-    *** prints a sorted count of given keywords ***
-    ***********************************************
+    *******************************************************
+    **** Recursive function that queries the Reddit API ***
+    ******* prints a sorted count of given keywords *******
+    *******************************************************
     @subreddit: string representing subreddit to search for
     @word_list: collection of keywords to search in the
                 subreddit
+    @kw_cont: a copy of counted words
+    @next_pg: next page
+    @reap_kw: a dict for the counted words
     Return: Nothing
     """
-    hot_titles = recurse(subreddit, word_list, {})
-    if hot_titles:
-        for key, value in sorted(hot_titles.items(), key=lambda val: val[1],
-                           reverse=True):
-            if value != 0:
-                print('{}: {}'.format(key, value))
+    headers = {"User-Agent": "me"}
+
+    if next_pg:
+        subRhot = requests.get('https://reddit.com/r/' + subreddit +
+                               '/hot.json?after=' + next_pg,
+                               headers=headers)
+    else:
+        subRhot = requests.get('https://reddit.com/r/' + subreddit +
+                               '/hot.json', headers=headers)
+
+    if subRhot.status_code == 404:
+        return
+
+    if kw_cont == {}:
+        for word in word_list:
+            kw_cont[word] = 0
+            reap_kw[word] = word_list.count(word)
+
+    subRhot_dict = subRhot.json()
+    subRhot_data = subRhot_dict['data']
+    next_pg = subRhot_data['after']
+    subRhot_posts = subRhot_data['children']
+
+    for post in subRhot_posts:
+        post_data = post['data']
+        post_title = post_data['title']
+        title_words = post_title.split()
+        for w in title_words:
+            for key in kw_cont:
+                if w.lower() == key.lower():
+                    kw_cont[key] += 1
+
+    if next_pg:
+        count_words(subreddit, word_list, kw_cont, next_pg, reap_kw)
+
+    else:
+        for key, val in reap_kw.items():
+            if val > 1:
+                kw_cont[key] *= val
+
+        sorted_abc = sorted(kw_cont.items(), key=lambda x: x[0])
+        sorted_res = sorted(sorted_abc, key=lambda x: (-x[1], x[0]))
+        for res in sorted_res:
+            if res[1] > 0:
+                print('{}: {}'.format(res[0], res[1]))
