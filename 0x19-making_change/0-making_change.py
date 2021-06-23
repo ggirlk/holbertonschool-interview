@@ -2,6 +2,7 @@
 """
 Change comes from within
 """
+import sys
 
 
 def makeChange(coins, total):
@@ -21,13 +22,16 @@ def makeChange(coins, total):
     """
     if total <= 0:
         return 0
-    res = []
-    sub = []
+    if total <= 0:
+        return 0
+
+    res = 0
     for i in range(len(coins)):
-        sub.append((coins[i] + coins[i-1]))
-        if (total - sum(sub)) >= 0:
-            res.append(total - sum(sub) + 1)
-    try:
-        return min(res)
-    except:
-        return -1
+        if (coins[i] <= total):
+            sub_res = makeChange(coins, total-coins[i])
+
+            # Check for INT_MAX to avoid overflow and see if
+            # result can minimized
+            if (sub_res != sys.maxsize and sub_res + 1 < res):
+                res = sub_res + 1
+    return res
