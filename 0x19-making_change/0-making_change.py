@@ -22,11 +22,12 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
     res = []
-    sub = [0]
+    sub = []
     for i in range(len(coins)):
-        if coins[i-1] + coins[i] + sub[i] > total:
-                return -1
-        else:
-            sub.append(coins[i-1] + coins[i])
-        res.append(total - (coins[i-1] + coins[i] + sub[i]))
-    return min(res)
+        sub.append((coins[i] + coins[i-1]))
+        if (total - sum(sub)) >= 0:
+            res.append(total - sum(sub) + 1)
+    try:
+        return min(res)
+    except:
+        return -1
