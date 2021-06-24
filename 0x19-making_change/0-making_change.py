@@ -19,7 +19,8 @@ def makeChange(coins, total):
             *** If total cannot be met by any number
                 of coins you have, return -1
     """
-    if (type(total) is not int or type(coins) is not list):
+    if (type(total) is not int or type(coins) is not list
+       or len(coins) < 1):
         return -1
     if total <= 0:
         return 0
