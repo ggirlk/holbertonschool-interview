@@ -33,7 +33,7 @@ def makeChange(coins, total):
             if coins[j] >= 1 and Min[i - coins[j]] + 1 < Min[i]:
                 Min[i] = Min[i - coins[j]] + 1
 
-    if Min[total] <= total:
+    if Min[total] != total:
         return Min[total]
     else:
         return -1
