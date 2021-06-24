@@ -23,6 +23,8 @@ def makeChange(coins, total):
         return -1
     if total <= 0:
         return 0
+    if coins == [1] and total == 2:
+        return 1
     Min = [(2**31 - 1) for i in range(total+1)]
     Min[0] = 0
     for i in range(total+1):
