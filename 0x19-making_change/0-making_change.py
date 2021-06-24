@@ -2,7 +2,6 @@
 """
 Change comes from within
 """
-import sys
 
 
 def makeChange(coins, total):
