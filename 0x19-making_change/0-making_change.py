@@ -19,19 +19,20 @@ def makeChange(coins, total):
             *** If total cannot be met by any number
                 of coins you have, return -1
     """
+    if (type(total) is not int and total >= 10**4):
+        return -1
     if total <= 0:
         return 0
-
-    res = []
-    sub = [0]
-    for i in range(len(coins)):
-        if coins[i-1] + coins[i] + sub[i] > total:
+    Min = [(2**31 - 1) for i in range(total+1)]
+    Min[0] = 0
+    for i in range(total+1):
+        for j in range(len(coins)):
+            if (coins[j] < 1 and coins[j] > (2**31 - 1)):
                 return -1
-        else:
-            if (coins[i-1] + coins[i] + sub[i] < total):
-                sub.append(coins[i-1] + coins[i])
-                res.append(total - (coins[i-1] + coins[i]) - sub[i])
-            else:
-                sub.append((coins[i] + coins[i-1]))
-                res.append(total - sum(sub) + 1)
-    return min(res)
+            if coins[j] >= 1 and Min[i - coins[j]] + 1 < Min[i]:
+                Min[i] = Min[i - coins[j]] + 1
+    #print(Min)
+    if Min[total] <= total:
+        return Min[total]
+    else:
+        return -1
