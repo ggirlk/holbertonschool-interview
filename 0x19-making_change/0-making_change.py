@@ -30,7 +30,7 @@ def makeChange(coins, total):
             if (coins[j] < 0):
                 return -1
             if Min[i - coins[j]] + 1 < Min[i]:
-                Min[i] = min(Min[i - coins[j]] + 1, Min[i])
+                Min[i] = Min[i - coins[j]] + 1
 
     if Min[total] != float('inf'):
         return Min[total]
