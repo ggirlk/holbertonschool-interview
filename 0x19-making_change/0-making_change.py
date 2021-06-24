@@ -21,7 +21,7 @@ def makeChange(coins, total):
                 of coins you have, return -1
     """
     if (type(total) is not int or type(coins) is not list):
-        return -1
+        return 0
     if total <= 0:
         return 0
     Min = [float('inf') for i in range(total+1)]
