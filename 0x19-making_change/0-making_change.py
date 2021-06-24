@@ -30,7 +30,7 @@ def makeChange(coins, total):
         for j in range(len(coins)):
             # if (coins[j] < 0 or coins[j] > sys.maxsize):
             # return -1
-            if coins[j] >= 1 and Min[i - coins[j]] + 1 < Min[i]:
+            if Min[i - coins[j]] + 1 < Min[i]:
                 Min[i] = Min[i - coins[j]] + 1
 
     if Min[total] != sys.maxsize:
