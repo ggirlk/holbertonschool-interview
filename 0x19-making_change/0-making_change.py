@@ -19,7 +19,7 @@ def makeChange(coins, total):
             *** If total cannot be met by any number
                 of coins you have, return -1
     """
-    if (type(total) is not int and total >= 10**4):
+    if (type(total) is not int and total > 10**4):
         return -1
     if total <= 0:
         return 0
@@ -31,7 +31,7 @@ def makeChange(coins, total):
                 return -1
             if coins[j] >= 1 and Min[i - coins[j]] + 1 < Min[i]:
                 Min[i] = Min[i - coins[j]] + 1
-    #print(Min)
+
     if Min[total] <= total:
         return Min[total]
     else:
