@@ -84,5 +84,5 @@ List *add_node_begin(List **list, char *str)
 			(*list) = ptr;
 		}
 	}
-	return (list);
+	return (*list);
 }
