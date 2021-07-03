@@ -21,6 +21,7 @@ List *add_node_end(List **list, char *str)
 	}
 	else
 	{
+		ptr->str = malloc(sizeof(str));
 		ptr->str = strdup(str);
 		if ((*list) == NULL)
 		{
@@ -63,6 +64,7 @@ List *add_node_begin(List **list, char *str)
 	}
 	else
 	{
+		ptr->str = malloc(sizeof(str));
 		ptr->str = strdup(str);
 		if ((*list) == NULL)
 		{
