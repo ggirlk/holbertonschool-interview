@@ -63,7 +63,7 @@ List *add_node_begin(List **list, char *str)
 	}
 	else
 	{
-		ptr->str = strdup(str);
+		ptr->str = str;
 		if ((*list) == NULL)
 		{
 			(*list) = ptr;
