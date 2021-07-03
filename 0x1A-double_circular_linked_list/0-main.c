@@ -59,23 +59,58 @@ int main(void)
 
 int main(void)
 {
-    List *list;
+    
+	List *list, *node;
 
 	list = NULL;
-	if (!add_node_end(&list, "Holberton") ||
-	!add_node_end(&list, "School") ||
-	!add_node_end(&list, "Full") ||
-	!add_node_end(&list, "Stack") ||
-	!add_node_end(&list, "Engineer"))
+	//node = add_node_begin(&list, "Hello World.");
+	node = add_node_end(&list, "Hello World.");
+	if (list != node)
 		return (1);
+	node->str[11] = '!';
+	print_list(node);
+	print_list(list);
+
+	//return (0);
+    /*
+    [Expected]
+    Hello World!
+    ->prev: Hello World!
+    ->next: Hello World!
+    Hello World!
+    ->prev: Hello World!
+    ->next: Hello World!
+
+    (114 chars long)
+    [stderr]: [Anything]
+    */
+    
+    
+    //List *list, *node;
 
 	list = NULL;
-	if (!add_node_begin(&list, "Holberton") ||
-	!add_node_begin(&list, "School") ||
-	!add_node_begin(&list, "Full") ||
-	!add_node_begin(&list, "Stack") ||
-	!add_node_begin(&list, "Engineer"))
-		return (1);
+	add_node_end(&list, "One fish");
+	node = add_node_end(&list, "Two fish");
+
+	print_list(list);
+    printf("\n");
+	print_list(node);
+
 	return (0);
+    
+    /*
+    One fish
+    ->prev: Two fish
+    ->next: Two fish
+    Two fish
+    ->prev: One fish
+    ->next: One fish
+    Two fish
+    ->prev: One fish
+    ->next: One fish
+    One fish
+    ->prev: Two fish
+    ->next: Two fish
+    */
 }
 
