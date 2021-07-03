@@ -29,7 +29,7 @@ void print_list(List *list)
  * main - check the code for Holberton School students.
  *
  * Return: Always 0.
- */
+ *
 int main(void)
 {
     List *list;
@@ -55,4 +55,37 @@ int main(void)
     print_list(list);
     
     return (0);
+}*/
+
+int main(void)
+{
+	List *list, *node;
+
+    
+	list = NULL;
+    
+	//node = add_node_begin(&list, "Hello World.");
+	node = add_node_end(&list, "Hello World.");
+    node->str[10] = 'k';
+    printf("%c\n", node->str[10]);
+	if (list != node)
+		return (1);
+	//node->str[11] = '!';
+	print_list(node);
+	print_list(list);
+
+	return (0);
+    /*
+    [Expected]
+    Hello World!
+    ->prev: Hello World!
+    ->next: Hello World!
+    Hello World!
+    ->prev: Hello World!
+    ->next: Hello World!
+
+    (114 chars long)
+    [stderr]: [Anything]
+    */
 }
+
