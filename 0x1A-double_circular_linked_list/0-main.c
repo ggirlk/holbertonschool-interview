@@ -59,6 +59,7 @@ int main(void)
 
 int main(void)
 {
+    /*
 	List *list, *node;
 
     
@@ -66,16 +67,14 @@ int main(void)
     
 	//node = add_node_begin(&list, "Hello World.");
 	node = add_node_end(&list, "Hello World.");
-    node->str[10] = 'k';
-    printf("%c\n", node->str[10]);
 	if (list != node)
 		return (1);
-	//node->str[11] = '!';
+	node->str[11] = '!';
 	print_list(node);
 	print_list(list);
 
 	return (0);
-    /*
+    
     [Expected]
     Hello World!
     ->prev: Hello World!
@@ -86,6 +85,34 @@ int main(void)
 
     (114 chars long)
     [stderr]: [Anything]
+    */
+    
+    
+    List *list, *node;
+
+	list = NULL;
+	add_node_end(&list, "One fish");
+	node = add_node_end(&list, "Two fish");
+
+	print_list(list);
+    printf("\n");
+	print_list(node);
+
+	return (0);
+    
+    /*
+    One fish
+    ->prev: Two fish
+    ->next: Two fish
+    Two fish
+    ->prev: One fish
+    ->next: One fish
+    Two fish
+    ->prev: One fish
+    ->next: One fish
+    One fish
+    ->prev: Two fish
+    ->next: Two fish
     */
 }
 

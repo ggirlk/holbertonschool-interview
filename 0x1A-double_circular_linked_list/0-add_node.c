@@ -41,7 +41,7 @@ List *add_node_end(List **list, char *str)
 			ptr->next = (*list);
 		}
 	}
-	return (*list);
+	return (ptr);
 
 }
 
@@ -55,7 +55,7 @@ List *add_node_end(List **list, char *str)
 List *add_node_begin(List **list, char *str)
 {
 	List *ptr = malloc(sizeof(List));
-	List *temp = malloc(sizeof(List));
+	List *temp;
 
 	if (ptr == NULL)
 	{
@@ -84,5 +84,5 @@ List *add_node_begin(List **list, char *str)
 			(*list) = ptr;
 		}
 	}
-	return (*list);
+	return (ptr);
 }
