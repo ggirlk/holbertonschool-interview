@@ -59,12 +59,10 @@ int main(void)
 
 int main(void)
 {
-    /*
+    
 	List *list, *node;
 
-    
 	list = NULL;
-    
 	//node = add_node_begin(&list, "Hello World.");
 	node = add_node_end(&list, "Hello World.");
 	if (list != node)
@@ -73,8 +71,8 @@ int main(void)
 	print_list(node);
 	print_list(list);
 
-	return (0);
-    
+	//return (0);
+    /*
     [Expected]
     Hello World!
     ->prev: Hello World!
@@ -88,7 +86,7 @@ int main(void)
     */
     
     
-    List *list, *node;
+    //List *list, *node;
 
 	list = NULL;
 	add_node_end(&list, "One fish");
