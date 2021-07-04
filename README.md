@@ -1,7 +1,8 @@
 # [![](holberton-logo.png) Holberton School Interview Preparation Projects](https://www.holbertonschool.com/tn/en/pathways)
 
+<div>
 <img src="img.png" style="width: 100%">
-
+</div>
 # 🧑🏻‍💻 Intro
 
 This repository contains the most comon interviews algorithms that we've done at Holberton School which includes:
