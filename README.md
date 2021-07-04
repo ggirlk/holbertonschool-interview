@@ -1,7 +1,7 @@
 # [![](holberton-logo.png) Holberton School Interview Preparation Projects](https://www.holbertonschool.com/tn/en/pathways)
 
 
-<img src="img.png" style="display: block; width: 100%">
+<img src="img.png" style="display: block; margin: auto">
 
 # 🧑🏻‍💻 Intro
 
