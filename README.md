@@ -34,6 +34,12 @@ This repository contains the most comon interviews algorithms that we've done at
  - 0x18. Merge Sort [Jun 7 21...Jun 11 21] - 91.67%
  - 0x19. Making Change [Jun 21 21...Jun 25 21] - 100.0%
 
+# 🧑🏻‍💻 Technologies
+
+## ![](c.png) C language
+
+## ![](p.png) Python
+
 <hr>
 
 By [Khouloud](https://www.linkedin.com/in/khouloud-alkhammassi-3a9078129) Software engineer at [HolbertonSchool®️](https://www.holbertonschool.com)
