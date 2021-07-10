@@ -17,5 +17,8 @@ int main(void)
     radix_sort(array, n);
     printf("\n");
     print_array(array, n);
+    
+    
+    radix_sort(NULL, 0);
     return (0);
 }
