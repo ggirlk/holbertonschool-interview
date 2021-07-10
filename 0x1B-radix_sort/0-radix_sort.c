@@ -37,7 +37,4 @@ void radix_sort(int *array, size_t size)
         array[i] = aux[i];
 
     print_array(array, size);
-
-    free(count);
-    free(aux);
 }
