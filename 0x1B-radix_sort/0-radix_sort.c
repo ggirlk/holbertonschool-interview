@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "sort.h"
 
@@ -29,7 +28,6 @@ void radix_sort(int *array, size_t size)
         aux[count[array[i]]++] = array[i];
 
     print_array(array, size);
-    printf("\n");
     for (i=0; i <= N; i++)
         array[i] = aux[i];
     
