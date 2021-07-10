@@ -26,7 +26,7 @@ void radix_sort(int *array, size_t size)
 
     for (i=0; i < size; i++)
         count[array[i]+1]++;
-    
+
     for (r=0; r < R; r++)
         count[r+1] += count[r];
 
@@ -34,7 +34,11 @@ void radix_sort(int *array, size_t size)
         aux[count[array[i]]++] = array[i];
 
     for (i=0; i < size; i++)
+    {
         array[i] = aux[i];
+        print_array(array, size);
+    }
+        
 
     print_array(array, size);
 }
