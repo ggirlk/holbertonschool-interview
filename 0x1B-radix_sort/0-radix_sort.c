@@ -14,7 +14,7 @@ void radix_sort(int *array, size_t size)
     int N = size-1;
     int *aux, *count;
 
-    aux =  malloc(sizeof(array));
+    aux =  malloc(sizeof(int) * size);
     
     count = malloc(sizeof(int) * (R+1));
 
@@ -30,8 +30,6 @@ void radix_sort(int *array, size_t size)
     print_array(array, size);
     for (i=0; i <= N; i++)
         array[i] = aux[i];
-    
-    //free(aux);
-    //free(count);
 
+    free(aux);
 }
