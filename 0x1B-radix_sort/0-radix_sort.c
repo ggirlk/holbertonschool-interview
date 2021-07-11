@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include "sort.h"
 
@@ -30,6 +29,9 @@ void radix_sort(int *array, size_t size)
     int i, j, tmp, min;
     int count = size;
     int dev = 10;
+
+    if (!array || size == 0)
+        return;
 
     while (!isSorted(array, size))
     {
