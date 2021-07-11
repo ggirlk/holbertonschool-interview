@@ -26,9 +26,10 @@ int isSorted(int *array, size_t size)
 void radix_sort(int *array, size_t size)
 {
 	int i, j, tmp, min;
-	int count = size;
+	int count;
 	int dev = 10;
 
+    count = size;
 	if (!array || size == 0)
 		return;
 
