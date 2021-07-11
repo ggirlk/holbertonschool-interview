@@ -8,12 +8,12 @@
  */
 int isSorted(int *array, size_t size)
 {
-    for (size_t i = 0; i < size-1; i++)
-    {
-        if (array[i] > array[i + 1])
-            return 0;
-    }
-    return 1;
+	for (size_t i = 0; i < size - 1; i++)
+	{
+		if (array[i] > array[i + 1])
+		return (0);
+	}
+	return (1);
 }
 
 /**
@@ -25,38 +25,39 @@ int isSorted(int *array, size_t size)
  */
 void radix_sort(int *array, size_t size)
 {
-    int i, j, tmp, min;
-    int count = size;
-    int dev = 10;
+	int i, j, tmp, min;
+	int count = size;
+	int dev = 10;
 
-    if (!array || size == 0)
-        return;
+	if (!array || size == 0)
+		return;
 
-    while (!isSorted(array, size))
-    {
-        for (i = 0; i < count; i++)
-        {
-            int k = i;
-            min = array[i] % dev;
+	while (!isSorted(array, size))
+	{
+		for (i = 0; i < count; i++)
+		{
+			int k = i;
 
-            /* To find minimum LSD */
+			min = array[i] % dev;
 
-            for (j = i + 1; j < count;j++)
-            {
-                if (min > (array[j] % dev))
-                {
-                    min = array[j] % dev;
-                    k = j;
-                }              
-            }
+			/* To find minimum LSD */
 
-            tmp = array[k];
-            array[k] = array[i];
-            array[i] = tmp;
-        }
+			for (j = i + 1; j < count; j++)
+			{
+				if (min > (array[j] % dev))
+				{
+					min = array[j] % dev;
+					k = j;
+				}
+			}
 
-        print_array(array, size);
-        dev *= 10;
-    }
+			tmp = array[k];
+			array[k] = array[i];
+			array[i] = tmp;
+		}
+
+		print_array(array, size);
+		dev *= 10;
+	}
 
 }
