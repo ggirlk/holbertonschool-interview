@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stddef.h>
 #include "sort.h"
 
 /**
@@ -39,8 +39,9 @@ void radix_sort(int *array, size_t size)
         {
             int k = i;
             min = array[i] % dev;
+
             /* To find minimum LSD */
-            k = i;
+
             for (j = i + 1; j < count;j++)
             {
                 if (min > (array[j] % dev))
@@ -58,6 +59,5 @@ void radix_sort(int *array, size_t size)
         print_array(array, size);
         dev *= 10;
     }
-    
 
 }
