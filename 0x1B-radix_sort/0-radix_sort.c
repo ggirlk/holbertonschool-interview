@@ -1,57 +1,21 @@
 #include "sort.h"
 
 /**
- * countsort - linear sorting
- * @arr: array to be sorted contains only numbers >= 0
- * @n: array size
- * @place: int
+ * isSorted - check if the array is sorted
+ * @array: array to be sorted contains only numbers >= 0
+ * @size: array size
  * Return: nothing
  */
-
-void countsort(int arr[],int n,int place)
+int isSorted(int *array, size_t size)
 {
-        int range = 10;
-        int i, *freq;
-        int *output;
+	size_t i;
 
-        freq = malloc(sizeof(int) * range);
-        output = malloc(sizeof(int) * n);
-        if (!freq || !output)
-                return;
-
-        for(i = 0; i < n; i++)
-                freq[(arr[i] / place) % range]++;
-
-        for(i=1;i<range;i++)
-                freq[i] += freq[i-1];
-
-        for(i = n - 1; i >= 0; i--)
-        {
-                output[freq[(arr[i] / place) % range] - 1] = arr[i];
-                freq[(arr[i] / place) % range]--;
-        }
-        for(i = 0; i < n; i++)
-                arr[i] = output[i];
-}
-/**
- * sort - sorting
- * @arr: array to be sorted contains only numbers >= 0
- * @n: array size
- * @place: int
- * Return: nothing
- */
-
-void sort(int *arr, int n, int maxx)
-{
-        int mul = 1;
-
-        while(maxx)
-        {
-                countsort(arr, n, mul);
-                print_array(arr, n);
-                mul *= 10;
-                maxx /= 10;
-        }
+	for (i = 0; i < size - 1; i++)
+	{
+		if (array[i] > array[i + 1])
+		return (0);
+	}
+	return (1);
 }
 
 /**
@@ -63,22 +27,40 @@ void sort(int *arr, int n, int maxx)
  */
 void radix_sort(int *array, size_t size)
 {
-	int i,  maxx;
+	int i, j, tmp, min;
 	int count;
+	int dev = 10;
 
-    count = size;
+	count = size;
 	if (!array || size == 0)
 		return;
-    maxx = array[0];
-    for (i = 1 ; i < count; i++)
-    {
-        if (maxx < array[i])
-        {
-            maxx = array[i];
-        }
-    }
-	sort(array, size, maxx);
 
-	
+	while (!isSorted(array, size))
+	{
+		for (i = 0; i < count; i++)
+		{
+			int k = i;
+
+			min = array[i] % dev;
+
+			/* To find minimum LSD */
+
+			for (j = i + 1; j < count; j++)
+			{
+				if (min > (array[j] % dev))
+				{
+					min = array[j] % dev;
+					k = j;
+				}
+			}
+
+			tmp = array[k];
+			array[k] = array[i];
+			array[i] = tmp;
+		}
+
+		print_array(array, size);
+		dev *= 10;
+	}
 
 }
