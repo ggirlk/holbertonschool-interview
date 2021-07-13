@@ -50,6 +50,9 @@ void radix_sort(int *array, size_t size)
 {
 	int i, N = size, k = 0, j;
 	int dev = 1, mul = 10;
+    
+    if (!array || !size)
+        return;
 
 	while (!isSorted(array, size))
 	{
