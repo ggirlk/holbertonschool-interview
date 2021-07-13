@@ -95,14 +95,14 @@ void radix_sort(int *array, size_t size)
 {
 	int i, N = size, max, dev = 1, mul = 10, **buckets, *indx;
 
-	if (!array || size < 2)
+	if (!array || size <= 0)
 		return;
 	max = getMax(array, size);
 
 	while (max > 0)
 	{
 		buckets = (int **) malloc(sizeof(int) * (mul * (N + 1)));
-		indx = (int *) malloc(sizeof(int) * ((N + 1)));
+		indx = (int *) malloc(sizeof(int) * (mul * (N + 2)));
 		if (!buckets || !indx)
 			return;
 		sort(array, size, buckets, indx, dev, mul);
