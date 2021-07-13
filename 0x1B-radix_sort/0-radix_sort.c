@@ -95,7 +95,7 @@ void radix_sort(int *array, size_t size)
 {
 	int i, N = size, max, dev = 1, mul = 10, **buckets, *indx;
 
-	if (!array || !size)
+	if (!array || size <= 1)
 		return;
 	max = getMax(array, size);
 	
