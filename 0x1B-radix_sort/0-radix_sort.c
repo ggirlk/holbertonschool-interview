@@ -38,7 +38,6 @@ int *addElemEnd(int *array, size_t size, int n)
 		array[i - 1] = n;
 	return (array);
 }
-
 /**
  * radix_sort - sorts an array of integers in ascending
  * ***********  order using the LSD Radix sort algorithm
@@ -49,22 +48,22 @@ int *addElemEnd(int *array, size_t size, int n)
 
 void radix_sort(int *array, size_t size)
 {
-	int i, N = size, k = 0, j, R = 10;
+	int i, N = size, k = 0, j;
 	int dev = 1, mul = 10;
 
-    int **buckets, *indx;
-
-		
 	while (!isSorted(array, size))
 	{
-		buckets = (int **) malloc(sizeof(int) * (R * (N + 1)));
-		indx = (int *) malloc(sizeof(int) * (R * (N + 1)));
+		int **buckets, *indx;
+
+		buckets = (int **) malloc(sizeof(int) * (mul * (N + 1)));
+		indx = (int *) malloc(sizeof(int) * (mul * (N + 1)));
 
 		if (!buckets || !indx)
 			return;
-		for (i = 0; i < R; i++)
+        
+		for (i = 0; i < mul; i++)
 		{
-			buckets[i] = malloc(sizeof(int) * (R * (N + 1)));
+			buckets[i] = malloc(sizeof(int) * (mul * (N + 1)));
 			if (!buckets[i])
 				return;
 			for (j = 0; j < N - 1; j++)
@@ -83,7 +82,7 @@ void radix_sort(int *array, size_t size)
 
 		k = size - 1;
 		j = 0;
-		for (i = 0; i < R; i++)
+		for (i = 0; i < mul; i++)
 		{
 			int l = indx[i] - 1;
 
@@ -95,7 +94,7 @@ void radix_sort(int *array, size_t size)
 
 		}
 		k = 0;
-		for (i = 0; i < R; i++)
+		for (i = 0; i < mul; i++)
 		{
 			int l = indx[i];
 			if (l > 0)
@@ -104,11 +103,16 @@ void radix_sort(int *array, size_t size)
 		}
 
 		print_array(array, size);
-		dev *= 10;
-		mul *= 10;
-
+        
 		free(indx);
+        for (i = 0; i < mul; i++)
+        {
+            if (buckets[i])
+                free(buckets[i]);
+        }
 		free(buckets);
+        dev *= 10;
+		mul *= 10;
 	}
 
 }
