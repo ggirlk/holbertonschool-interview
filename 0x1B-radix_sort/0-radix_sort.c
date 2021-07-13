@@ -49,21 +49,22 @@ int *addElemEnd(int *array, size_t size, int n)
 
 void radix_sort(int *array, size_t size)
 {
-	int i, N = size, k = 0, j;
+	int i, N = size, k = 0, j, R = 10;
 	int dev = 1, mul = 10;
 
+    int **buckets, *indx;
+
+		
 	while (!isSorted(array, size))
 	{
-		int **buckets, *indx;
-
-		buckets = (int **) malloc(sizeof(int) * (mul * (N + 1)));
-		indx = (int *) malloc(sizeof(int) * (mul * (N + 1)));
+		buckets = (int **) malloc(sizeof(int) * (R * (N + 1)));
+		indx = (int *) malloc(sizeof(int) * (R * (N + 1)));
 
 		if (!buckets || !indx)
 			return;
-		for (i = 0; i < mul; i++)
+		for (i = 0; i < R; i++)
 		{
-			buckets[i] = malloc(sizeof(int) * (mul * (N + 1)));
+			buckets[i] = malloc(sizeof(int) * (R * (N + 1)));
 			if (!buckets[i])
 				return;
 			for (j = 0; j < N - 1; j++)
@@ -82,7 +83,7 @@ void radix_sort(int *array, size_t size)
 
 		k = size - 1;
 		j = 0;
-		for (i = 0; i < mul; i++)
+		for (i = 0; i < R; i++)
 		{
 			int l = indx[i] - 1;
 
@@ -94,7 +95,7 @@ void radix_sort(int *array, size_t size)
 
 		}
 		k = 0;
-		for (i = 0; i < mul; i++)
+		for (i = 0; i < R; i++)
 		{
 			int l = indx[i];
 			if (l > 0)
