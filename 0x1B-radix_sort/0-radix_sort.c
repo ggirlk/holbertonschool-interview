@@ -55,14 +55,16 @@ void sort(int *array, size_t size, int **buckets, int *indx, int dev, int mul)
 		buckets[i] = malloc(sizeof(int) * (mul * (N + 1)));
 		if (!buckets[i])
 			return;
-		for (j = 0; j < N - 1; j++)
+		for (j = 0; j < N; j++)
 			buckets[i][j] = -1;
 		indx[i] = 0;
 	}
 	for (i = 0; i < N; i++)
 	{
 		k = (array[i] / dev) % mul;
-		buckets[k] = addElemEnd(*(&buckets[k]), array[i]);
+		if (!*(buckets[k]))
+			return;
+		addElemEnd(*(&buckets[k]), array[i]);
 		indx[k] += 1;
 	}
 	k = size - 1, j = 0;
@@ -89,7 +91,6 @@ void sort(int *array, size_t size, int **buckets, int *indx, int dev, int mul)
  * @size: array size
  * Return: nothing
  */
-
 void radix_sort(int *array, size_t size)
 {
 	int i, N = size, max, dev = 1, mul = 10, **buckets, *indx;
@@ -97,13 +98,13 @@ void radix_sort(int *array, size_t size)
 	if (!array || !size)
 		return;
 	max = getMax(array, size);
-	while (max)
+	
+	while (max > 0)
 	{
 		buckets = (int **) malloc(sizeof(int) * (mul * (N + 1)));
 		indx = (int *) malloc(sizeof(int) * (mul * (N + 1)));
 		if (!buckets || !indx)
 			return;
-
 		sort(array, size, buckets, indx, dev, mul);
 		print_array(array, size);
 		free(indx);
@@ -111,7 +112,7 @@ void radix_sort(int *array, size_t size)
 			if (buckets[i])
 				free(buckets[i]);
 		free(buckets);
-		mul *= 10, max /= 10;
+		mul *= 10;
+		max /= 10;
 	}
-
 }
