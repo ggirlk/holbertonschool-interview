@@ -98,7 +98,7 @@ void radix_sort(int *array, size_t size)
 	if (!array || size <= 1)
 		return;
 	max = getMax(array, size);
-	
+
 	while (max > 0)
 	{
 		buckets = (int **) malloc(sizeof(int) * (mul * (N + 1)));
