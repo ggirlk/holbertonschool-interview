@@ -28,15 +28,15 @@ int isSorted(int *array, size_t size)
 int *addElemEnd(int *array, size_t size, int n)
 {
 	size_t i = 0, k = 0;
-    size++;
+
+	size++;
 	while (array[i] != -1)
-	//while (array[i])
 		i++;
-    if (k == 0)
-        array[i] = n;
-    else
-        array[i-1] = n;
-    return (array);
+	if (k == 0)
+		array[i] = n;
+	else
+		array[i - 1] = n;
+	return (array);
 }
 
 /**
@@ -50,23 +50,23 @@ int *addElemEnd(int *array, size_t size, int n)
 void radix_sort(int *array, size_t size)
 {
 	int i, N = size, k = 0, j;
-    int dev = 1, mul = 10;
+	int dev = 1, mul = 10;
 
 	while (!isSorted(array, size))
 	{
-		int **buckets, indx[mul];
+		int **buckets, *indx;
 
-		buckets = (int **) malloc(sizeof(int) * (mul *(N +1)));
+		buckets = (int **) malloc(sizeof(int) * (mul * (N + 1)));
+		indx = (int *) malloc(sizeof(int) * (mul * (N + 1)));
 
-		if (!buckets)
-	        return;
+		if (!buckets || !indx)
+			return;
 		for (i = 0; i < mul; i++)
 		{
-            //printf("%s\n", "here");
-			buckets[i] = malloc(sizeof(int) * (mul *(N +1)));
-            if (!buckets[i])
-	             return;
-			for (j = 0; j < N-1; j++)
+			buckets[i] = malloc(sizeof(int) * (mul * (N + 1)));
+			if (!buckets[i])
+				return;
+			for (j = 0; j < N - 1; j++)
 				buckets[i][j] = -1;
 			indx[i] = 0;
 		}
@@ -75,42 +75,39 @@ void radix_sort(int *array, size_t size)
 		{
 			k = (array[i] / dev) % mul;
 
-			buckets[k] = addElemEnd(*(&buckets[k]), size, array[i]);
-			indx[k]+=1;
+			buckets[k] = addElemEnd(*(&buckets[k]),
+						size, array[i]);
+			indx[k] += 1;
 		}
 
 		k = size - 1;
 		j = 0;
 		for (i = 0; i < mul; i++)
-	    {
+		{
 			int l = indx[i] - 1;
-	
-			while ( l > 0 )
+
+			while (l > 0)
 			{
 				array[j] = (*buckets[i]);
-				j++;
-				l--;
-				k--;
+				j++, l--, k--;
 			}
 
-	    }
-  
-
+		}
 		k = 0;
 		for (i = 0; i < mul; i++)
 		{
 			int l = indx[i];
 			if (l > 0)
 				for (int j = 0; j < l; j++)
-					array[ k ] = buckets[i][j], k++;
+					array[k] = buckets[i][j], k++;
 		}
 
 		print_array(array, size);
 		dev *= 10;
 		mul *= 10;
-		//for (i = 0; i < R; i++)
-		//	free(buckets[i]);
+
+		free(indx);
 		free(buckets);
-    }
+	}
 
 }
