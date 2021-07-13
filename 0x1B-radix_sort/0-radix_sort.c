@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "sort.h"
 
 /**
@@ -17,6 +18,26 @@ int isSorted(int *array, size_t size)
 	}
 	return (1);
 }
+/**
+ * addElemEnd - add element at the ent of the array
+ * @array: array to be sorted contains only numbers >= 0
+ * @size: array size
+ * @n: integer to be added
+ * Return: nothing
+ */
+int *addElemEnd(int *array, size_t size, int n)
+{
+	size_t i = 0, k = 0;
+    size++;
+	while (array[i] != -1)
+	//while (array[i])
+		i++;
+    if (k == 0)
+        array[i] = n;
+    else
+        array[i-1] = n;
+    return (array);
+}
 
 /**
  * radix_sort - sorts an array of integers in ascending
@@ -25,42 +46,71 @@ int isSorted(int *array, size_t size)
  * @size: array size
  * Return: nothing
  */
+
 void radix_sort(int *array, size_t size)
 {
-	int i, j, tmp, min;
-	int count;
-	int dev = 10;
-
-	count = size;
-	if (!array || size == 0)
-		return;
-
+	size_t i, R = 10, k = 0, j;
+    int dev = 1, mul = 10;
+R++;
 	while (!isSorted(array, size))
 	{
-		for (i = 0; i < count; i++)
+		int **buckets, indx[100];
+
+		buckets = (int **) malloc(sizeof(int) * (mul *(size +1)));
+
+		if (!buckets)
+	        return;
+		for (int i = 0; i < mul; i++)
 		{
-			int k = i;
+            //printf("%s\n", "here");
+			buckets[i] = malloc(sizeof(int) * (mul *(size +1)));
+            if (!buckets[i])
+	             return;
+			for (j = 0; j < size-1; j++)
+				buckets[i][j] = -1;
+			indx[i] = 0;
+		}
 
-			min = array[i] % dev;
+		for (i = 0; i < size; i++)
+		{
+			k = (array[i] / dev) % mul;
 
-			/* To find minimum LSD */
+			buckets[k] = addElemEnd(*(&buckets[k]), size, array[i]);
+			indx[k]+=1;
+		}
 
-			for (j = i + 1; j < count; j++)
+		k = size - 1;
+		j = 0;
+		for (int i = 0; i < 10; i++)
+	    {
+			int l = indx[i] - 1;
+	
+			while ( l > 0 )
 			{
-				if (min > (array[j] % dev))
-				{
-					min = array[j] % dev;
-					k = j;
-				}
+				array[j] = (*buckets[i]);
+				j++;
+				l--;
+				k--;
 			}
 
-			tmp = array[k];
-			array[k] = array[i];
-			array[i] = tmp;
+	    }
+  
+
+		k = 0;
+		for (int i = 0; i < 10; i++)
+		{
+			int l = indx[i];
+			if (l > 0)
+				for (int j = 0; j < l; j++)
+					array[ k ] = buckets[i][j], k++;
 		}
 
 		print_array(array, size);
 		dev *= 10;
-	}
+		mul *= 10;
+		//for (i = 0; i < R; i++)
+		//	free(buckets[i]);
+		free(buckets);
+    }
 
 }

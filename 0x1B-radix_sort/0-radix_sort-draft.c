@@ -82,6 +82,55 @@ int *pollLast(int *allBuckets, size_t size)
     //*allBuckets = *tmp;
     return tmp;
 } 
+int isSorted(int *array, size_t size)
+{
+	size_t i;
+
+	for (i = 0; i < size - 1; i++)
+	{
+		if (array[i] > array[i + 1])
+		return (0);
+	}
+	return (1);
+}
+int *addElemEnd(int *array, size_t size, int n)
+{
+	size_t i = 0, k = 0;
+    size++;
+	while (array[i] != -1)
+		i++;
+    if (k == 0)
+        array[i] = n;
+    return (array);
+}
+void delFirstElem(int *array, size_t size)
+{
+	size_t i;
+
+	for (i = 0; i < size - 1; i++)
+	{
+		array[i] = array[i + 1];
+	}
+
+}
+int isIn(int *array, size_t size, int n)
+{
+	size_t i;
+
+	for (i = 0; i < size; i++)
+	{
+		if (array[i] == n)
+            return (1);
+	}
+    return (0);
+}
+int getLastElement(int *array)
+{
+    int j = 0;
+    while (array[j] != -1)
+        j++;
+    return array[j-1];
+}
 /**
  * radix_sort - sorts an array of integers in ascending
  * ***********  order using the LSD Radix sort algorithm
