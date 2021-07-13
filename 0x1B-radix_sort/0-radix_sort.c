@@ -98,7 +98,7 @@ void radix_sort(int *array, size_t size)
 		{
 			int l = indx[i];
 			if (l > 0)
-				for (int j = 0; j < l; j++)
+				for (j = 0; j < l; j++)
 					array[k] = buckets[i][j], k++;
 		}
 
