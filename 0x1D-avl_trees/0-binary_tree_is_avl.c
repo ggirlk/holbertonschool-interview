@@ -53,7 +53,7 @@ int binary_tree_is_avl(const binary_tree_t *tree)
     }
 
     if(diff < 1)
-        return (binary_tree_is_avl(tree->left) | binary_tree_is_avl(tree->right));
+        return (binary_tree_is_avl(tree->left) & binary_tree_is_avl(tree->right));
 
     return 0;
 }
