@@ -2,7 +2,29 @@
 #include <stdio.h>
 #include "regex.h"
 
-#include <regex.h>
+/**
+ * compare - compares two strings
+ * @first: first string
+ * @second: second string
+ * Return: 1 if the strings can be considered identical, otherwise return 0
+**/
+
+int compare(const char *first, const char *second)
+{
+
+	if (*first == '\0' && *second == '\0')
+		return (1);
+
+	if (*first == '*' && *(first + 1) != '\0' && *second == '\0')
+		return (0);
+
+	if (*first == '.' || *first == '?' ||  *first == *second)
+		return (compare(first + 1, second + 1));
+
+	if (*first == '*')
+		return (compare(first + 1, second) || compare(first, second + 1));
+	return (0);
+}
 
 /**
  * regex_match - checks whether a given pattern matches a given string
@@ -13,10 +35,5 @@
 
 int regex_match(char const *str, char const *pattern)
 {
-    regex_t re;
-    if (regcomp(&re, pattern, REG_EXTENDED|REG_NOSUB) != 0) return 0;
-    int status = regexec(&re, str, 0, NULL, 0);
-    regfree(&re);
-    if (status != 0) return 0;
-    return 1;
+    return (compare(pattern, str));
 }
